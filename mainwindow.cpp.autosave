@@ -1,0 +1,60 @@
+
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+    DebugLogger* debugLogger = new DebugLogger(this);
+    connect(debugLogger, &DebugLogger::logAdded, [=]() {
+        ui->listView->setModel(debugLogger->model());
+    });
+    readdata data;
+    data.setdata("0",1);
+    qDebug()<<data.getdata(1);
+//    m_firebase= new classfirebase();
+//    connect(m_firebase,&classfirebase::dataChanged,this,&MainWindow::onFirebaseDataReceived);
+//    connect(m_firebase,&classfirebase::datamapOutput,this,&MainWindow::onfirevasedatareceived);
+
+
+
+
+
+
+}
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    robot.settrangthai(2,1);
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    robot.settrangthai(2,2);
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    robot.settrangthai(2,3);
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    robot.settrangthai(1,1);
+}
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    robot.settrangthai(1,2);
+}
+
+void MainWindow::on_pushButton_6_clicked()
+{
+    robot.settrangthai(1,3);
+}
